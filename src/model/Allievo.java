@@ -1,10 +1,12 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -19,6 +21,7 @@ public class Allievo {
 	
 	private String luogoDiNascita;
 	
+	@Id
 	private Integer matricola;
 	
 	private String email;
@@ -115,6 +118,23 @@ public class Allievo {
 
 	public void setCorsi(Set<Corso> corsi) {
 		this.corsi = corsi;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(matricola);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Allievo other = (Allievo) obj;
+		return Objects.equals(matricola, other.matricola);
 	}
 
 }

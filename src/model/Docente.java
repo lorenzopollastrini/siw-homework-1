@@ -1,9 +1,11 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -15,6 +17,7 @@ public class Docente {
 	
 	private LocalDate dataDiNascita;
 	
+	@Id
 	private Integer partitaIva;
 	
 	/*
@@ -74,6 +77,23 @@ public class Docente {
 
 	public void setCorsi(Set<Corso> corsi) {
 		this.corsi = corsi;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(partitaIva);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Docente other = (Docente) obj;
+		return Objects.equals(partitaIva, other.partitaIva);
 	}
 	
 }
