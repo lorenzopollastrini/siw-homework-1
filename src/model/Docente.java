@@ -18,7 +18,7 @@ public class Docente {
 	private LocalDate dataDiNascita;
 	
 	@Id
-	private Integer partitaIva;
+	private Long partitaIva;
 	
 	/*
 	 * Fetch: LAZY (default). Motivo: non è detto che quando si prende un docente si vogliano conoscere i suoi corsi.
@@ -31,7 +31,7 @@ public class Docente {
 		
 	}
 
-	public Docente(String nome, String cognome, LocalDate dataDiNascita, Integer partitaIva, Set<Corso> corsi) {
+	public Docente(String nome, String cognome, LocalDate dataDiNascita, Long partitaIva, Set<Corso> corsi) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.dataDiNascita = dataDiNascita;
@@ -63,11 +63,11 @@ public class Docente {
 		this.dataDiNascita = dataDiNascita;
 	}
 
-	public Integer getPartitaIva() {
+	public Long getPartitaIva() {
 		return partitaIva;
 	}
 
-	public void setPartitaIva(Integer partitaIva) {
+	public void setPartitaIva(Long partitaIva) {
 		this.partitaIva = partitaIva;
 	}
 

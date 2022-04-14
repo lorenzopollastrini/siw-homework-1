@@ -1,16 +1,71 @@
 package main;
 
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+
+import model.Allievo;
+import model.Corso;
+import model.Docente;
+import model.Societa;
 
 public class Main {
 
 	public static void main(String[] args) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("products-unit");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("homework-1-unit");
 		EntityManager em = emf.createEntityManager();
 		
-		/* Creare e gestire oggetti qui */
+		/* Oggetti di esempio */
+		
+		Allievo allievo = new Allievo();
+		allievo.setNome("Mario");
+		allievo.setCognome("Rossi");
+		allievo.setDataDiNascita(LocalDate.of(2000, 1, 1));
+		allievo.setLuogoDiNascita("Roma");
+		allievo.setMatricola(123456);
+		allievo.setEmail("mario.rossi@outlook.com");
+		
+		Set<Allievo> allievi = new HashSet<>();
+		allievi.add(allievo);
+		
+		Societa societa = new Societa();
+		societa.setRagioneSociale("Consulenza");
+		societa.setSede("Via Bruxelles, 79, Roma, 00100, RM");
+		societa.setTelefono(1234567890);
+		
+		allievo.setSocieta(societa);
+		
+		Docente docente = new Docente();
+		docente.setNome("Paolo");
+		docente.setCognome("Bianchi");
+		docente.setDataDiNascita(LocalDate.of(1970, 1, 1));
+		docente.setPartitaIva(12345678901L);
+		
+		Corso corso = new Corso();
+		corso.setNome("Sistemi Informativi su Web");
+		corso.setDataDiInizio(LocalDate.of(2022, 3, 1));
+		corso.setDurataInMesi(4);
+		
+		Set<Corso> corsi = new HashSet<>();
+		corsi.add(corso);
+		
+		corso.setAllievi(allievi);
+		allievo.setCorsi(corsi);
+		docente.setCorsi(corsi);
+		corso.setDocente(docente);
+		
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		em.persist(allievo);
+		em.persist(societa);
+		em.persist(docente);
+		em.persist(corso);
+		tx.commit();
 		
 		em.close();
 		emf.close();
