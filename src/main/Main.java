@@ -12,6 +12,7 @@ import javax.persistence.Persistence;
 import model.Allievo;
 import model.Corso;
 import model.Docente;
+import model.Indirizzo;
 import model.Societa;
 
 public class Main {
@@ -35,8 +36,16 @@ public class Main {
 		
 		Societa societa = new Societa();
 		societa.setRagioneSociale("Consulenza");
-		societa.setSede("Via Bruxelles, 79, Roma, 00100, RM");
-		societa.setTelefono(1234567890);
+		societa.setTelefono("1234567890");
+		
+		Indirizzo sede = new Indirizzo();
+		sede.setVia("Via Bruxelles");
+		sede.setCivico("79");
+		sede.setComune("Roma");
+		sede.setCap("00100");
+		sede.setProvincia("RM");
+		
+		societa.setSede(sede);
 		
 		allievo.setSocieta(societa);
 		

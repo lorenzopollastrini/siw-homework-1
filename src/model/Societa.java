@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Societa {
@@ -16,15 +17,16 @@ public class Societa {
 	
 	private String ragioneSociale;
 	
-	private String sede;
+	@ManyToOne
+	private Indirizzo sede;
 	
-	private Integer telefono;
+	private String telefono;
 
 	public Societa() {
 		
 	}
 
-	public Societa(String ragioneSociale, String sede, Integer telefono) {
+	public Societa(String ragioneSociale, Indirizzo sede, String telefono) {
 		this.ragioneSociale = ragioneSociale;
 		this.sede = sede;
 		this.telefono = telefono;
@@ -38,19 +40,19 @@ public class Societa {
 		this.ragioneSociale = ragioneSociale;
 	}
 
-	public String getSede() {
+	public Indirizzo getSede() {
 		return sede;
 	}
 
-	public void setSede(String sede) {
+	public void setSede(Indirizzo sede) {
 		this.sede = sede;
 	}
 
-	public Integer getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(Integer telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 
